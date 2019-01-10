@@ -1,0 +1,47 @@
+[HttpPost]
+        public JsonResult Index(string login, string senha)
+        {
+
+            string[] line = System.IO.File.ReadAllLines(ConfigurationManager.AppSettings["ArquivoTxt"], Encoding.UTF8);
+            string msg = string.Empty;
+            int fim = line.Length;
+            int usuario = 0;
+
+            while (usuario <= fim)
+            {
+                for (int pass = 1; pass <= fim; pass = pass + 2)
+                {
+
+                    if ((login == "") || (senha == ""))
+                    {
+                        msg = "Insira os valores!";
+                        return Json(msg, JsonRequestBehavior.AllowGet);
+                    }
+
+                    else if (usuario + 1 > fim || pass + 1 > fim)
+                    {
+
+                        msg = "Login ou senha incorretos!!";
+                        return Json(msg, JsonRequestBehavior.AllowGet);
+
+                    }
+
+                    else if ((login == line[usuario]) && (senha == line[pass]))
+                    {
+                        return Json(new
+                        {
+                            redirectUrl = Url.Action("Importar_DIRF", "Home", new { id = line[usuario] }),
+                            isRedirect = true
+                        });
+                    }
+
+                    usuario = usuario + 2;
+                }
+
+            }
+            return Json(new
+            {
+                redirectUrl = Url.Action("Index", "Home"),
+                isRedirect = true
+            });
+        }
