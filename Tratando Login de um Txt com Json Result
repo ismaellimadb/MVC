@@ -30,7 +30,7 @@
                     {
                         return Json(new
                         {
-                            redirectUrl = Url.Action("Importar_DIRF", "Home", new { id = line[usuario] }),
+                            redirectUrl = Url.Action("Redireciona_View", "Home", new { id = line[usuario] }),
                             isRedirect = true
                         });
                     }
