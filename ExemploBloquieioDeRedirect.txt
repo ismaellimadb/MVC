@@ -13,7 +13,7 @@ success: function (json) {
                                 window.location.href = json.redirectUrl;
                             }
 
-D:\Projects\DotNet\2013\Sinergy\Sinergy.Folha.VS2013\SinergyImportacaoVerbasDIRF\SinergyImportacaoVerbasDIRF\App_Start\FilterConfig.cs
+~\App_Start\FilterConfig.cs
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class NoDirectAccessAttribute : ActionFilterAttribute
