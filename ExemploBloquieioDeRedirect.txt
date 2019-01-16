@@ -1,0 +1,36 @@
+ else if ((login == line[usuario]) && (senha == line[pass]))
+                    {
+                        return Json(new
+                        {
+                            redirectUrl = Url.Action("About", "Home", new { id = line[usuario] }),
+                            isRedirect = true
+                        });
+                    }
+
+
+success: function (json) {
+                            if (json.isRedirect) {
+                                window.location.href = json.redirectUrl;
+                            }
+
+D:\Projects\DotNet\2013\Sinergy\Sinergy.Folha.VS2013\SinergyImportacaoVerbasDIRF\SinergyImportacaoVerbasDIRF\App_Start\FilterConfig.cs
+
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    public class NoDirectAccessAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (filterContext.HttpContext.Request.UrlReferrer == null ||
+                        filterContext.HttpContext.Request.Url.Host != filterContext.HttpContext.Request.UrlReferrer.Host)
+            {
+                filterContext.Result = new RedirectToRouteResult(new
+                               RouteValueDictionary(new { controller = "Home", action = "Index", area = "" }));
+            }
+        }
+    }
+
+[NoDirectAccess]
+        public ActionResult About()
+        {
+            return View();
+        }
