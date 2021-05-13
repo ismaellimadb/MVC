@@ -1,0 +1,10 @@
+If (itensPorPagina > 15 && numeroPagina >= 1 && estaFiltrado == true)
+{
+      numeroPagina = pagina;
+}
+
+else If (itensPorPagina > 15 && numeroPagina > 1 && estaFiltrado == false)
+{
+    numeroPagina = 1;
+    estaFiltrado = true;
+}
